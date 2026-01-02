@@ -1,0 +1,10 @@
+{
+    "QuickTxn": [
+        {
+            "TransferType": "transfer",
+            "Amount": "200",
+            "Account": "123456789",
+            "Description": "test Description..."
+        }
+    ]
+}

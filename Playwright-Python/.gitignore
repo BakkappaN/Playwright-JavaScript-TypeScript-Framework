@@ -1,0 +1,65 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+.env
+.venv/
+venv/
+env/
+.DS_Store
+*.DS_Store
+# =========================
+# Playwright
+# =========================
+.playwright/
+playwright-report/
+test-results/
+videos/
+screenshots/
+traces/
+
+# =========================
+# Pytest
+# =========================
+.pytest_cache/
+htmlcov/
+coverage.xml
+pytest-debug.log
+report.html
+
+# =========================
+# Logs
+# =========================
+logs/
+*.log
+
+# =========================
+# IDE / Editor
+# =========================
+.vscode/
+.idea/
+*.iml
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Build / Distribution
+# =========================
+dist/
+build/
+*.egg-info/
+
+# =========================
+# Node (if Playwright installed via Node)
+# =========================
+node_modules/
+package-lock.json
+npm-debug.log*

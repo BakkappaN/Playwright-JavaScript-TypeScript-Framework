@@ -1,0 +1,22 @@
+{
+    "QuickTxn": [
+        {
+            "TransferType": "transfer",
+            "Amount": "200",
+            "Account": "123456789",
+            "Description": "test Description..."
+        },
+        {
+            "TransferType": "transfer",
+            "Amount": "300",
+            "Account": "00000111111",
+            "Description": "test Description..."
+        },
+        {
+            "TransferType": "transfer",
+            "Amount": "400",
+            "Account": "987654321",
+            "Description": "test Description..."
+        }
+    ]
+}
