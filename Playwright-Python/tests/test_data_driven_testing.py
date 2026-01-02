@@ -1,4 +1,4 @@
-import pytest
+import pytest 
 from playwright.sync_api import Page, expect
 
 from pages.login_page import LoginPage
@@ -8,13 +8,17 @@ from pages.transaction_history_page import TransactionHistoryPage
 from utils.logger import get_logger
 logger = get_logger(__name__)
 
-@pytest.mark.uitest
-@pytest.mark.regression  
-def test_quick_transaction_successfull(test_data, page: Page, app_config) -> None:
+from utils.json.json_testdata_reader import JsonReader
 
+@pytest.mark.parametrize( 
+        "testData",
+        JsonReader.read_json("test-data/data_driven_testing.json", "QuickTxn") 
+) 
+
+@pytest.mark.jsondatadriventesting 
+@pytest.mark.regression
+def test_data_driven_testing(page: Page, app_config, testData): 
     logger.info(f"Environment : {app_config['Check']}")
-    testData = test_data["quick_transaction"]["QuickTxn"]
-
     loginPage = LoginPage(page)
     loginPage.goToUrl(app_config["URL"])
     loginPage.loginToApp(app_config["UserName"], app_config["Password"],app_config["AppName"])
@@ -25,7 +29,6 @@ def test_quick_transaction_successfull(test_data, page: Page, app_config) -> Non
     quickTxnPage = QuickTransactionPage(page)
     logger.info(f"test data : {testData["TransferType"]}")
     quickTxnPage.createQuickTxn(testData["TransferType"], testData["Amount"], testData["Account"], testData["Description"])
-    # quickTxnPage.createQuickTxn('transfer', '100', '123456789', 'test desc...')
     quickTxnPage.validateConfirmationScreenButtons()
     quickTxnPage.confirm_Txn()
     quickTxnPage.validate_Txn_Successfull()
@@ -35,4 +38,3 @@ def test_quick_transaction_successfull(test_data, page: Page, app_config) -> Non
     txnHistoryPage = TransactionHistoryPage(page)
     txnHistoryPage.validate_Txn_History_Details(testData["Account"], testData["Amount"])
     logger.info('Validated transaction in txn. hostory')
-

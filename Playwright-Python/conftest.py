@@ -1,5 +1,6 @@
 import pytest
 from utils.json.config_reader import ConfigReader
+from utils.json.json_testdata_reader import JsonReader
 
 # Logger setup
 from utils.logger import get_logger
@@ -17,6 +18,12 @@ def pytest_addoption(parser):
 def app_config(request):
     env = request.config.getoption("--env")
     return ConfigReader.get_config(env)
+
+# read all json test data
+@pytest.fixture(scope="session")
+def test_data(request):
+    env = request.config.getoption("--env")
+    return JsonReader.read_all(env)
 
 def pytest_configure(config):
     global pytest_html
